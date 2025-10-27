@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-@ -0,0 +1,29 @@
-=======
->>>>>>> Stashed changes
 import ttkbootstrap as ttk
 import logging
 
