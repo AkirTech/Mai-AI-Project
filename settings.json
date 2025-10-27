@@ -1,0 +1,8 @@
+{
+    "//": "用于存取主要设置",
+    "oobe": true,
+    "default_language": "en",
+    "user_language": "",
+    "user_screen_size": "",
+    "user_mainwindow_params": ""
+}

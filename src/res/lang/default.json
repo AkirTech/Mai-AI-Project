@@ -3,10 +3,13 @@
     "UI": {
         "Title": "Mai-AI-v0.1",
         "Description": "A Demo Version."
+<<<<<<< Updated upstream
     },
     "logger": {
         "info_starting": "$$正在启动...",
         "info_running": "$$正在运行。",
         "error_unexpected": "发生了一个意外错误："
+=======
+>>>>>>> Stashed changes
     }
 }
