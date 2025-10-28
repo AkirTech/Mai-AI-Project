@@ -2,7 +2,8 @@
     "//":"用于存取UI的语言",
     "UI": {
         "Title": "Mai-AI-v0.1",
-        "Description": "A Demo Version."
+        "Description": "A Demo Version.",
+        "app_input_bar_placeholder":"Start chating here..."
     },
     "logger": {
         "info_starting": "$$正在启动...",

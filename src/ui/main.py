@@ -1,20 +1,23 @@
 import ttkbootstrap as ttk
 import logging
+from src.utils.LoadLang import load_lang
 
 logger = logging.getLogger("UI_Main")
 logger.setLevel(logging.INFO)
 
 class MainApplication(ttk.Window):
-    def __init__(self):
+    def __init__(self,geometry,title,lang):
         super().__init__(themename="darkly")
-        self.title("Main Application")
+        self.title(title)
         # self.iconbitmap("res\\icon.ico")
-        self.geometry("400x300")
+        self.geometry(geometry)
         
+        self.lang_data = load_lang(lang)["UI"]
 
         self.input_frame = ttk.Frame(self)
         self.input_frame.pack(pady=20)
-        self.input_bar = ttk.Entry(self.input_frame,textvariable=ttk.StringVar(value="Start chating here..."),width=40)
+        self.input_bar = ttk.Entry(self.input_frame,
+                                   textvariable=ttk.StringVar(value=self.lang_data["app_input_bar_placeholder"]),width=40)
         self.left_column = ttk.Frame(self)
         self.left_column.pack(side=ttk.LEFT, fill=ttk.Y , expand=True)
         self.right_column = ttk.Frame(self)
