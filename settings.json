@@ -1,9 +1,8 @@
 {
     "//": "\u7528\u4e8e\u5b58\u53d6\u4e3b\u8981\u8bbe\u7f6e",
     "oobe": true,
-    "user_language": "",
+    "user_language": "default",
     "user_screen_size": "",
     "user_mainwindow_params": "",
-    "path": "K:\\Mai-AI-Project\\",
-    "lang": "default"
+    "path": ""
 }

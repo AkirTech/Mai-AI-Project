@@ -6,10 +6,10 @@ import json
 import tkinter as tk
 import os
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger("Main")
 
-TITLE = "Mai AI v0.1"
+APP_TITLE = "Mai AI v0.1"
 
 def main_loader():
     logger.info("Main Loader Started")
@@ -22,7 +22,7 @@ def main_loader():
         json.dump(settings, f, indent=4)
     if settings["user_language"] == "":
         logger.info("No language selected, please select a language.")
-        select_lang_window = SelectLang.SelectLangWindow(geometry="300x100", title="Language Selector", lang_list=get_lang_list())
+        select_lang_window = SelectLang.SelectLangWindow(path=path)
         select_lang_window.position_center()
         select_lang_window.mainloop()
     if settings["oobe"]:
@@ -47,13 +47,13 @@ def oobe_loader(base_settings:dict):
         json.dump(base_settings, f, indent=4)
     logger.info(f"Screen settings saved to settings.json")
     main_window = main.MainApplication(geometry=base_settings["user_mainwindow_params"],
-                                       title=TITLE)
+                                       title=APP_TITLE)
     main_window.mainloop()
 def app_loader(base_settings:dict):
     logger.info("App Loader Started")
 
     main_window = main.MainApplication(geometry=base_settings["user_mainwindow_params"],
-                                       title=TITLE)
+                                       title=APP_TITLE)
     main_window.mainloop()
 
     
