@@ -10,7 +10,7 @@ CONFIRM_BUTTON_TEXTS = ["Confirm", "确认", "Confirmer", "Bestätigen",
                          "Confirmar","確認","選擇"]
 
 def get_lang_list(path) -> list:
-    lang_list = os.listdir(f"{path}"+"src\\res\\lang")
+    lang_list = os.listdir(f"{path}"+"\\src\\res\\lang")
     return [lang.replace(".json","") for lang in lang_list]
 
 logger = logging.getLogger("Language Selector")

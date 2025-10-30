@@ -2,6 +2,11 @@ import os
 import requests as req
 import pygame.mixer as mixer
 import time 
+import logging
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logger.addHandler(logging.StreamHandler())
+
 
 def generate_reponse_au_name(content:str):
     return time.strftime(time.ctime()+content+".wav")
@@ -20,8 +25,9 @@ def play_audio(file_path):
     while mixer.music.get_busy():
         continue
 
-def sget_audio(content:str,lang:str,top_k:int,temperature:float,
-               ref_audio_path:str,prompt_text:str,prompt_lang:str):
+def sget_audio(content:str,lang:str,ref_audio_path:str,
+               prompt_text:str,prompt_lang:str,
+               temperature:float = 1,top_k:int = 20):
     """Get an audio file from the api."""
     #     {
     #     "text": "",                   # str.(required) text to be synthesized
@@ -50,10 +56,10 @@ def sget_audio(content:str,lang:str,top_k:int,temperature:float,
         "ref_audio_path": f"{ref_audio_path}",
         "prompt_text": f"{prompt_text}",
         "prompt_lang": f"{prompt_lang}",
-        "top_k": 5,
-        "top_p": 1,
-        "temperature": 1, }
-    response = req.post("http://127.0.0.1:9980", json=po)
+        "top_k": top_k,
+        "temperature": temperature, }
+    response:req.Response = req.post("http://127.0.0.1:9980", json=po)
+    logger.info(f"{response.status_code}")
     audio = response.content
     with open(f"{generate_reponse_au_name(content=content)}", "wb") as f:
         f.write(audio)

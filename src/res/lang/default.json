@@ -3,7 +3,9 @@
     "UI": {
         "Title": "Mai-AI-v0.1",
         "Description": "A Demo Version.",
-        "app_input_bar_placeholder":"Start chating here..."
+        "app_input_bar_placeholder":"Start chating here...",
+        "app_input_bar_button":"Send",
+        "app_top_k_label":"Top K:"
     },
     "logger": {
         "info_starting": "$$正在启动...",

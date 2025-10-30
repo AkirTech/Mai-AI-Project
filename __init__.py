@@ -1,6 +1,6 @@
 from src.ui import main
 from src.ui import SelectLang
-from src.utils import *
+from src.utils import CheckDependencies
 import logging
 import json
 import tkinter as tk
@@ -47,15 +47,23 @@ def oobe_loader(base_settings:dict):
         json.dump(base_settings, f, indent=4)
     logger.info(f"Screen settings saved to settings.json")
     main_window = main.MainApplication(geometry=base_settings["user_mainwindow_params"],
-                                       title=APP_TITLE)
+                                       title=APP_TITLE,lang=base_settings["user_language"])
     main_window.mainloop()
 def app_loader(base_settings:dict):
     logger.info("App Loader Started")
 
     main_window = main.MainApplication(geometry=base_settings["user_mainwindow_params"],
-                                       title=APP_TITLE)
+                                       title=APP_TITLE,lang=base_settings["user_language"])
     main_window.mainloop()
 
     
 if __name__ == '__main__':
-    main_loader()
+    try:
+        logger.info("Checking Dependencies...")
+        if CheckDependencies.check_ollama_installed():
+            main_loader()
+        else:
+            logger.error("ollama is not installed. Please install ollama from https://ollama.com/")
+    except Exception as e:
+        logger.error(e)
+        quit(code=-1)

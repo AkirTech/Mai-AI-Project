@@ -1,8 +1,8 @@
 {
-    "//": "\u7528\u4e8e\u5b58\u53d6\u4e3b\u8981\u8bbe\u7f6e",
-    "oobe": true,
+    "//": "This have been ignored to git.",
+    "oobe": false,
     "user_language": "default",
-    "user_screen_size": "",
-    "user_mainwindow_params": "",
-    "path": ""
+    "user_screen_size": "1707x1067",
+    "user_mainwindow_params": "1138x798+853+533",
+    "path": "K:\\Mai-AI-Project"
 }
