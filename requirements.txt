@@ -1,0 +1,6 @@
+pygame
+ttkbootstrap
+requests
+ollama
+langchain_core
+langchain_ollama
