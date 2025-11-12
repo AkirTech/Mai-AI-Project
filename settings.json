@@ -1,8 +1,8 @@
 {
     "//": "This have been ignored to git.",
-    "oobe": true,
+    "oobe": false,
     "user_language": "default",
-    "user_screen_size": "",
-    "user_mainwindow_params": "",
-    "path": ""
+    "user_screen_size": "1707x1067",
+    "user_mainwindow_params": "1138x798+853+533",
+    "path": "K:\\Mai-AI-Project"
 }

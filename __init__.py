@@ -29,7 +29,7 @@ def main_loader():
         select_lang_window.position_center()
         select_lang_window.mainloop()
         quit(code=-1)
-    if settings["oobe"]:
+    if settings["oobe"] and settings["user_language"] != "":
         oobe_loader(settings)
     else:
         app_loader(settings)
@@ -47,6 +47,8 @@ def oobe_loader(base_settings:dict):
     base_settings["user_mainwindow_params"] = app_config
     base_settings["oobe"] = False
     
+    tk_instance.destroy()
+
     with open("settings.json", "w", encoding="utf-8") as f:
         json.dump(base_settings, f, indent=4)
     logger.info(f"Screen settings saved to settings.json")

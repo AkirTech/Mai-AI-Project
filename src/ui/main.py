@@ -13,6 +13,8 @@ class MainApplication(ttk.Window):
         self.title(title)
         # self.iconbitmap("res\\icon.ico")
         self.geometry(geometry)
+
+        self.top_k = ttk.StringVar(value="25")
         
         self.lang_data = load_lang(lang)["UI"]
         logger.info(f"Language loaded: {lang}")
@@ -36,15 +38,28 @@ class MainApplication(ttk.Window):
                             width=50,foreground="#727272")
         self.input_bar.pack(padx=10, pady=10,fill="x",anchor=ttk.N)
 
-        self.top_k_label = ttk.Label(self.left_column, text=self.lang_data["app_top_k_label"])
-        self.top_k_label.pack(padx=5, pady=(100,0),fill="x",anchor=ttk.N)
-        self.top_k_scale = ttk.Scale(self.left_column, from_=20, to=80,length=200, orient=ttk.HORIZONTAL)
+
+        self.top_k_frame = ttk.Frame(self.left_column)
+
+        self.top_k_label = ttk.Label(self.top_k_frame, 
+                                     text=self.lang_data["app_top_k_label"])
+        self.top_k_value_label = ttk.Entry(self.top_k_frame, width=5)
+        self.top_k_value_label.insert(0,self.top_k.get())
+        self.top_k_frame.pack(padx=5, pady=5,fill="none",anchor=ttk.N)
+        self.top_k_label.pack(padx=(0,200),side="left",fill="x",anchor=ttk.W)
+        self.top_k_value_label.pack(padx=(200,0),side="right",fill="none",anchor=ttk.E)
+        self.top_k_scale = ttk.Scale(self.left_column, from_=10, to=90,length=200, 
+                                     orient=ttk.HORIZONTAL,command=lambda v: self.top_k_value_label.delete(0,ttk.END) or self.top_k_value_label.insert(0,str(int(float(v)))))
+        self.top_k_scale.config(variable=self.top_k)
         self.top_k_scale.pack(padx=5, pady=10,fill="x",anchor=ttk.N)
 
+       
         self.button = ttk.Button(self.left_column,width=40, text=self.lang_data["app_input_bar_button"], command=self.on_button_click)
         self.button.pack( padx=10, pady=10)
         self.out_label = ttk.Label(self.right_column, text="What AI output will be displayed here.",width=60)
         self.out_label.pack(padx=10, pady=10)
+        self.AI_answers = ttk.Entry(self.right_column, width=60)
+        self.AI_answers.pack(padx=10, pady=10,expand=True,fill="both")
         self.sizegrip = ttk.Sizegrip(self.down_frame)
         self.sizegrip.pack(side=ttk.BOTTOM, anchor=ttk.SE)
 
