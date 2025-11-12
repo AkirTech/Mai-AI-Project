@@ -4,7 +4,7 @@ import logging
 logger = logging.getLogger("CheckDependencies")
 logger.setLevel(logging.INFO)
 logger.info("Checking Dependencies.")
-
+logger.addHandler(logging.StreamHandler())
 
 def check_ollama_installed() -> bool:
     try:

@@ -8,12 +8,15 @@ import os
 
 logging.basicConfig(level=logging.INFO,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger("Main")
+if not logger.hasHandlers():
+    logger.addHandler(logging.StreamHandler())
 
 APP_TITLE = "Mai AI v0.1"
-
 def main_loader():
+    """Main Loader"""
     logger.info("Main Loader Started")
     path = os.path.abspath(os.path.dirname(__file__))
+    # print("1:"+path)
     #load settings.json
     with open("settings.json", "r", encoding="utf-8") as f:
         settings:dict = json.load(f)
@@ -22,9 +25,10 @@ def main_loader():
         json.dump(settings, f, indent=4)
     if settings["user_language"] == "":
         logger.info("No language selected, please select a language.")
-        select_lang_window = SelectLang.SelectLangWindow(path=path)
+        select_lang_window = SelectLang.SelectLangWindow(root_path=path)
         select_lang_window.position_center()
         select_lang_window.mainloop()
+        quit(code=-1)
     if settings["oobe"]:
         oobe_loader(settings)
     else:
@@ -50,6 +54,7 @@ def oobe_loader(base_settings:dict):
                                        title=APP_TITLE,lang=base_settings["user_language"])
     main_window.mainloop()
 def app_loader(base_settings:dict):
+    """Not OOBE"""
     logger.info("App Loader Started")
 
     main_window = main.MainApplication(geometry=base_settings["user_mainwindow_params"],
