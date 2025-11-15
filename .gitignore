@@ -5,6 +5,8 @@ __pycache__/
 
 # Customed files
 settings.json
+github.auth
+github.auth.pub
 
 # C extensions
 *.so
