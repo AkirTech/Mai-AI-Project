@@ -41,5 +41,7 @@ if __name__ == '__main__':
 
     if check_ollama_installed():
         logger.info("Ollama is installed.")
+        os.system("./scripts\\start_ollama.bat")
+        
     else:
         logger.error("Ollama is not installed. Please install Ollama from https://ollama.com/")
