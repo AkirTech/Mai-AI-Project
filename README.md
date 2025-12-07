@@ -18,7 +18,8 @@ Any legal conflicts caused when using the software is the responsibility of the 
 ***
   `1`:`copyright-risked files include *.pth ,*.json,*.wav files.`
 
-  **You must treat them carefully.**
+**Please note:This software is only designed for personal entertainment,not necessaily related to the Delta Force game.**
+**You must treat them carefully.**
 # Contact
 **AkirTech**:`qige0329+gmail.com`(Replace "+" with "@")
 Updated 2025.10.28.
