@@ -3,6 +3,7 @@ import logging
 from src.utils.LoadLang import load_lang
 from src.utils.GetAIAnswer import get_ai_answer,langchain_get_ai_answer
 from src.utils.GS_Process import sget_audio, play_audio
+from src.utils.Stringnn import formater
 
 logger = logging.getLogger("UI_Main")
 logger.setLevel(logging.INFO)
@@ -29,9 +30,9 @@ class MainApplication(ttk.Window):
 
         
         self.left_column = ttk.Frame(self.down_frame)
-        self.left_column.pack(side=ttk.LEFT, fill=ttk.Y , expand=True)
+        self.left_column.pack(side=ttk.LEFT, fill="both" , expand=True)
         self.right_column = ttk.Frame(self.down_frame)
-        self.right_column.pack(side=ttk.RIGHT, fill=ttk.Y, expand=True)
+        self.right_column.pack(side=ttk.RIGHT, fill="both", expand=True)
 
         self.input_bar = ttk.Entry(self.input_frame,
                             textvariable=ttk.StringVar(value=self.lang_data["app_input_bar_placeholder"]),
@@ -58,7 +59,8 @@ class MainApplication(ttk.Window):
         self.button.pack( padx=10, pady=10)
         self.out_label = ttk.Label(self.right_column, text="What AI output will be displayed here.",width=60)
         self.out_label.pack(padx=10, pady=10)
-        self.AI_answers = ttk.Entry(self.right_column, width=60)
+        self.AI_answers_value  = ttk.StringVar(value="")
+        self.AI_answers = ttk.Text(self.right_column, width=60)
         self.AI_answers.pack(padx=10, pady=10,expand=True,fill="both")
         self.sizegrip = ttk.Sizegrip(self.down_frame)
         self.sizegrip.pack(side=ttk.BOTTOM, anchor=ttk.SE)
@@ -68,9 +70,14 @@ class MainApplication(ttk.Window):
         self.user_prompt = self.input_bar.get()
         self.top_k = int(self.top_k_scale.get())
         self.ai_answer = get_ai_answer(prompt=self.user_prompt,history = self.history)
+        print(self.ai_answer)
         tmp_to_append = {"user":self.user_prompt, "assistant":self.ai_answer}
         self.history.append(tmp_to_append)
-        self.out_label.config(text=self.ai_answer)
+        # self.ai_answer = formater(self.ai_answer,20)
+        self.AI_answers_value.set(self.ai_answer)
+        self.AI_answers.insert("end", "\nUser: %s\nAI: %s\n" % (self.user_prompt,self.ai_answer))
+        self.AI_answers.update()
+        self.update()
         # sget_audio(content=self.ai_answer,lang="en",top_k=self.top_k,temperature=1,
         #            ref_audio_path="res\\ref_audio.wav",prompt_text=self.user_prompt,prompt_lang="en")
         """Wait for implementing sget_audio function.
