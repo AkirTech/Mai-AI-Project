@@ -5,7 +5,8 @@
         "Description": "A Demo Version.",
         "app_input_bar_placeholder":"Start chating here...",
         "app_input_bar_button":"Send",
-        "app_top_k_label":"Top K:"
+        "app_top_k_label":"Top K:",
+        "app_answer_list_label":"AI Answers:"
     },
     "logger": {
         "info_starting": "$$正在启动...",

@@ -1,12 +1,15 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+*.pyc
 *.py[codz]
 *$py.class
 
 # Customed files
+src/ui/__pycache__
 settings.json
 github.auth
 github.auth.pub
+src/res/Mai2_Star
 
 # C extensions
 *.so

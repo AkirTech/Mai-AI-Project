@@ -63,6 +63,7 @@ def sget_audio(content:str,lang:str,ref_audio_path:str,
     audio = response.content
     with open(f"{generate_reponse_au_name(content=content)}", "wb") as f:
         f.write(audio)
+    return 0 if response.status_code == 200 else -1
 
 def play_audio_file(file_path):
     """Play an audio file using the default system player."""

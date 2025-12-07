@@ -65,6 +65,7 @@ def app_loader(base_settings:dict):
 
     
 if __name__ == '__main__':
+    logger.warning(f"{APP_TITLE} Started")
     try:
         logger.info("Checking Dependencies...")
         if CheckDependencies.check_ollama_installed():
